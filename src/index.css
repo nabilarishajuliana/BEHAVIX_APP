@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand:  #4FB3A6;   /* teal — utama */
+  --color-accent: #FF8A65;   /* coral — tombol */
+  --color-sunny:  #FFD166;   /* kuning lembut */
+  --color-lav:    #B8A7E0;   /* lavender */
+  --color-deep:   #2C3E63;   /* navy — urge surfing */
+  --color-canvas: #FAF9F6;   /* background */
+  --color-ink:    #2E3A3A;   /* teks */
+  --font-sans: "Nunito", ui-sans-serif, sans-serif;
+}
