@@ -1,45 +1,30 @@
 import { useState } from "react";
-
-// Nanti ganti placeholder ini dengan layar asli
-function Placeholder({ name, navigate }) {
-  return (
-    <div className="min-h-screen bg-canvas font-sans p-6 flex flex-col gap-4">
-      <h1 className="text-2xl font-bold text-brand">{name}</h1>
-      <button
-        className="bg-accent text-white rounded-xl py-3 font-semibold"
-        onClick={() => navigate("checkin")}
-      >
-        Ke Check-in →
-      </button>
-      <button
-        className="bg-brand text-white rounded-xl py-3 font-semibold"
-        onClick={() => navigate("beranda")}
-      >
-        Ke Beranda →
-      </button>
-    </div>
-  );
-}
+import BerandaScreen from "./screens/BerandaScreen";
+import CheckinScreen from "./screens/CheckinScreen";
+import InsightScreen from "./screens/InsightScreen";
+import ActivityScreen from "./screens/ActivityScreen";
 
 export default function App() {
-  // history = tumpukan layar. Layar aktif = paling atas.
-  const [history, setHistory] = useState(["beranda"]);
+  const [history, setHistory] = useState([{ screen: "beranda", params: {} }]);
   const current = history[history.length - 1];
 
-  const navigate = (screen) => setHistory((h) => [...h, screen]);
+  const navigate = (screen, params = {}) =>
+    setHistory((h) => [...h, { screen, params }]);
   const goBack = () =>
     setHistory((h) => (h.length > 1 ? h.slice(0, -1) : h));
 
-  // Peta layar → komponennya
+  const props = { navigate, goBack, params: current.params };
+
   const screens = {
-    beranda: <Placeholder name="Beranda" navigate={navigate} />,
-    checkin: <Placeholder name="Check-in" navigate={navigate} />,
-    // tambah layar lain di sini nanti
+    beranda: <BerandaScreen {...props} />,
+    checkin: <CheckinScreen {...props} />,
+    insight: <InsightScreen {...props} />,
+    activity: <ActivityScreen {...props} />,
   };
 
   return (
-    <div className="mx-auto max-w-md min-h-screen">
-      {screens[current] || <div>Layar tidak ditemukan: {current}</div>}
+    <div className="mx-auto max-w-md min-h-screen bg-canvas">
+      {screens[current.screen] || <div className="p-6">404: {current.screen}</div>}
     </div>
   );
 }
