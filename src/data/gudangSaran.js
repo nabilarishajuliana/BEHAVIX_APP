@@ -1,5 +1,9 @@
 // Gudang saran — menu tertutup untuk AI & tab Quest.
-// Lengkapi dari draft gudang saran-mu. Ini contoh awal.
+// Tiap saran punya field:
+// - tool: cara ngerjainnya ("napas" | "timer" | "teks" | "jurnal")
+// - instruksi: langkah-langkah yang muncul di halaman aktivitas (untuk tipe "teks")
+// - pengantar (opsional): kalimat singkat di atas timer (untuk tipe "timer")
+
 export const GUDANG_SARAN = [
   {
     id: "napas_478",
@@ -10,6 +14,7 @@ export const GUDANG_SARAN = [
     intensitas: [1, 10],
     durasi: "3-5 menit",
     tool: "napas",
+    instruksi: [],
   },
   {
     id: "grounding",
@@ -20,6 +25,13 @@ export const GUDANG_SARAN = [
     intensitas: [5, 10],
     durasi: "±2 menit",
     tool: "teks",
+    instruksi: [
+      "Sebutin 5 hal yang bisa kamu lihat sekarang",
+      "Sebutin 4 hal yang bisa kamu sentuh",
+      "Sebutin 3 hal yang bisa kamu dengar",
+      "Sebutin 2 hal yang bisa kamu cium",
+      "Sebutin 1 hal yang bisa kamu rasain",
+    ],
   },
   {
     id: "musik_tenang",
@@ -30,6 +42,8 @@ export const GUDANG_SARAN = [
     intensitas: [1, 8],
     durasi: "5 menit",
     tool: "timer",
+    pengantar: "Buka playlist favorit yang bikin kamu tenang. Duduk santai, biarin musiknya nemenin kamu.",
+    instruksi: [],
   },
   {
     id: "jalan_kaki",
@@ -40,6 +54,8 @@ export const GUDANG_SARAN = [
     intensitas: [1, 7],
     durasi: "10-15 menit",
     tool: "timer",
+    pengantar: "Keluar bentar dari kamar. Jalan santai aja, perhatiin sekeliling. Nggak perlu buru-buru.",
+    instruksi: [],
   },
   {
     id: "jurnal",
@@ -50,6 +66,7 @@ export const GUDANG_SARAN = [
     intensitas: [1, 8],
     durasi: "bebas",
     tool: "jurnal",
+    instruksi: [],
   },
   {
     id: "telepon_teman",
@@ -60,6 +77,12 @@ export const GUDANG_SARAN = [
     intensitas: [1, 8],
     durasi: "bebas",
     tool: "teks",
+    instruksi: [
+      "Buka kontak, pilih satu teman yang bikin kamu nyaman",
+      "Kirim pesan singkat aja — nggak perlu formal",
+      "Bisa mulai dengan 'Halo, gimana kabar?' atau apapun",
+      "Kalau susah nulis, share meme lucu juga oke",
+    ],
   },
   {
     id: "jauhin_hp",
@@ -70,6 +93,12 @@ export const GUDANG_SARAN = [
     intensitas: [5, 10],
     durasi: "bebas",
     tool: "teks",
+    instruksi: [
+      "Taruh HP di ruangan lain, atau di tempat yang nggak keliatan",
+      "Set mode silent atau airplane mode",
+      "Alihkan ke aktivitas offline: minum air, jalan sebentar, atau tarik napas",
+      "Kalau muncul dorongan buat ngambil HP, biarin — tunggu sampai reda",
+    ],
   },
   {
     id: "sleep_hygiene",
@@ -80,6 +109,12 @@ export const GUDANG_SARAN = [
     intensitas: [1, 7],
     durasi: "bebas",
     tool: "teks",
+    instruksi: [
+      "Redupin lampu kamar, hindarin layar 15 menit sebelum tidur",
+      "Coba stretching ringan atau tarik napas dalam beberapa kali",
+      "Kalau nggak bisa tidur juga, bangun dulu — jangan paksa di tempat tidur",
+      "Ingat: satu malam kurang tidur bukan akhir dunia. Besok bisa lebih baik.",
+    ],
   },
   // ... tambahkan sisanya dari draft gudang saran
 ];

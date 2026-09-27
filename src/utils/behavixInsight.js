@@ -2,7 +2,7 @@ import { GUDANG_SARAN } from "../data/gudangSaran";
 import { PEMICU } from "../data/pemicu";
 
 // Ganti kalau AI Studio-mu pakai model lain
-const MODEL = "gemini-3.6-flash";
+const MODEL = "gemini-3.5-flash";
 const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
 const URL = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${API_KEY}`;
 

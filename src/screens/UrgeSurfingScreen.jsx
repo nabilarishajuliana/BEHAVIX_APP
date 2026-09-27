@@ -1,10 +1,36 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import BreathingTimer from "../components/BreathingTimer";
 import { storage } from "../utils/storage";
 
 export default function UrgeSurfingScreen({ goBack }) {
-  const [phase, setPhase] = useState("napas"); // "napas" → "selesai"
+  const [phase, setPhase] = useState("napas");
   const [after, setAfter] = useState(5);
+  const [musikOn, setMusikOn] = useState(false);
+  const audioRef = useRef(null);
+
+  // Kontrol musik
+  useEffect(() => {
+    if (!audioRef.current) return;
+    if (musikOn) {
+      audioRef.current.volume = 0.4;
+      audioRef.current.loop = true;
+      audioRef.current.play().catch(() => {
+        // browser mungkin block autoplay, biarin aja
+      });
+    } else {
+      audioRef.current.pause();
+    }
+  }, [musikOn]);
+
+  // Stop musik pas keluar layar
+  useEffect(() => {
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0;
+      }
+    };
+  }, []);
 
   function simpan() {
     const arr = storage.get("behavix_urge", []);
@@ -17,12 +43,32 @@ export default function UrgeSurfingScreen({ goBack }) {
 
   return (
     <div className="min-h-screen bg-deep font-sans p-6 flex flex-col">
-      <button
-        onClick={goBack}
-        className="w-10 h-10 rounded-full border border-white/40 text-white self-start"
-      >
-        ×
-      </button>
+      {/* audio element (hidden) */}
+      <audio ref={audioRef} src="/audio/calm.mp3" preload="auto" />
+
+      {/* top bar: back + musik toggle */}
+      <div className="flex items-center justify-between">
+        <button
+          onClick={goBack}
+          className="w-10 h-10 rounded-full border border-white/40 text-white"
+        >
+          ×
+        </button>
+
+        {phase === "napas" && (
+          <button
+            onClick={() => setMusikOn(!musikOn)}
+            className={`px-3 py-2 rounded-full border text-xs font-semibold flex items-center gap-1.5 transition ${
+              musikOn
+                ? "bg-white/20 border-white/40 text-white"
+                : "border-white/30 text-white/60"
+            }`}
+          >
+            <span>{musikOn ? "🎵" : "🔇"}</span>
+            <span>{musikOn ? "Musik nyala" : "Musik mati"}</span>
+          </button>
+        )}
+      </div>
 
       {phase === "napas" ? (
         <>

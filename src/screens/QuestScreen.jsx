@@ -22,7 +22,15 @@ export default function QuestScreen({ navigate }) {
 
   return (
     <div className="min-h-screen bg-canvas font-sans p-5 pb-24">
-      <h1 className="text-2xl font-extrabold text-ink mb-1">Quest ✨</h1>
+      <div className="flex items-start justify-between mb-1">
+        <h1 className="text-2xl font-extrabold text-ink">Quest ✨</h1>
+        <button
+          onClick={() => navigate("history")}
+          className="text-xs bg-white rounded-full px-3 py-1.5 font-bold text-brand shadow-sm"
+        >
+          📊 Riwayat
+        </button>
+      </div>
       <p className="text-sm text-gray-500 mb-4">
         Kegiatan kecil buat nemenin harimu. Pilih yang kamu mau — santai aja.
       </p>
@@ -34,7 +42,9 @@ export default function QuestScreen({ navigate }) {
             key={k}
             onClick={() => setFilter(k)}
             className={`text-sm px-4 py-2 rounded-full font-medium whitespace-nowrap ${
-              filter === k ? "bg-brand text-white" : "bg-white text-gray-500 shadow-sm"
+              filter === k
+                ? "bg-brand text-white"
+                : "bg-white text-gray-500 shadow-sm"
             }`}
           >
             {k}
@@ -51,7 +61,9 @@ export default function QuestScreen({ navigate }) {
             className="bg-white rounded-2xl p-4 shadow-sm flex items-center justify-between text-left"
           >
             <div>
-              <span className={`text-xs px-2 py-0.5 rounded-full ${WARNA[s.kategori] || "bg-gray-100"}`}>
+              <span
+                className={`text-xs px-2 py-0.5 rounded-full ${WARNA[s.kategori] || "bg-gray-100"}`}
+              >
                 {s.kategori}
               </span>
               <span className="text-xs text-gray-500 ml-2">{s.durasi}</span>

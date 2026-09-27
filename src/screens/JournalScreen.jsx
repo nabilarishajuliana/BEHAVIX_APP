@@ -28,7 +28,11 @@ export default function JournalScreen({ navigate }) {
       ) : (
         <div className="flex flex-col gap-3">
           {[...entries].reverse().map((e) => (
-            <div key={e.id} className="bg-white rounded-2xl p-4 shadow-sm">
+            <button
+              key={e.id}
+              onClick={() => navigate("jurnalDetail", { entry: e })}
+              className="bg-white rounded-2xl p-4 shadow-sm text-left w-full hover:bg-gray-50 active:scale-98 transition"
+            >
               <p className="text-xs text-gray-400 mb-1">
                 {new Date(e.waktu).toLocaleString("id-ID", {
                   day: "numeric",
@@ -37,8 +41,13 @@ export default function JournalScreen({ navigate }) {
                   minute: "2-digit",
                 })}
               </p>
-              <p className="text-sm text-ink whitespace-pre-wrap">{e.teks}</p>
-            </div>
+              <p className="text-sm text-ink whitespace-pre-wrap line-clamp-3">
+                {e.teks}
+              </p>
+              <p className="text-xs text-brand font-semibold mt-2">
+                Baca selengkapnya →
+              </p>
+            </button>
           ))}
         </div>
       )}
