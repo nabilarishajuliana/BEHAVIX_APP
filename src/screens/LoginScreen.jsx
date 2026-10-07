@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { storage, KEYS } from "../utils/storage";
 
 // Sensor username: ambil huruf pertama, sisanya jadi *
@@ -12,11 +12,21 @@ function sensorUsername(name) {
 export default function LoginScreen({ navigate }) {
   const [username, setUsername] = useState("");
   const [error, setError] = useState("");
+  const [restartUser, setRestartUser] = useState(null);
+  const confirmDialogRef = useRef(null);
+
+  useEffect(() => {
+    const dialog = confirmDialogRef.current;
+    if (restartUser && dialog && !dialog.open) dialog.showModal();
+    return () => {
+      if (dialog?.open) dialog.close();
+    };
+  }, [restartUser]);
 
   function handleLogin() {
     const savedUser = storage.get(KEYS.user);
     if (!savedUser || !savedUser.username) {
-      setError("Belum ada akun. Mulai dari awal ya 🌱");
+      setError("Belum ada akun. Silakan mulai dari awal.");
       return;
     }
     if (savedUser.username.toLowerCase() !== username.trim().toLowerCase()) {
@@ -29,21 +39,23 @@ export default function LoginScreen({ navigate }) {
   function handleMulaiDariAwal() {
     const savedUser = storage.get(KEYS.user);
     if (savedUser && savedUser.onboarded) {
-      const sensored = sensorUsername(savedUser.username);
-      const ok = window.confirm(
-        "Kamu udah punya akun ('" + sensored + "'). Kalau mulai dari awal, semua data lama (check-in, jurnal, riwayat) bakal kehapus dan nggak bisa dibalikin. Yakin?"
-      );
-      if (!ok) return;
-      storage.clearAll();
+      setRestartUser({ username: sensorUsername(savedUser.username) });
+      return;
     }
+    navigate("onboardingWelcome");
+  }
+
+  function handleConfirmRestart() {
+    storage.clearAll();
+    setRestartUser(null);
     navigate("onboardingWelcome");
   }
 
   return (
     <div className="min-h-screen bg-canvas font-sans p-6 flex flex-col items-center justify-center">
       {/* logo/maskot */}
-      <div className="w-24 h-24 rounded-full bg-brand/20 flex items-center justify-center mb-6 text-5xl">
-        🌊
+      <div className="w-24 h-24 flex items-center justify-center mb-6">
+        <img src="/logo-behavix.png" alt="Logo Behavix" className="w-full h-full object-contain" />
       </div>
 
       <h1 className="text-2xl font-extrabold text-ink text-center mb-1">
@@ -75,11 +87,55 @@ export default function LoginScreen({ navigate }) {
       </button>
 
       <button
+        type="button"
         onClick={handleMulaiDariAwal}
-        className="text-sm text-gray-500"
+        className="min-h-11 rounded-xl px-3 text-sm text-gray-500 transition-colors hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
       >
         Belum punya? <span className="text-brand font-bold">Mulai dari awal</span>
       </button>
+
+      <dialog
+        ref={confirmDialogRef}
+        onCancel={(event) => {
+          event.preventDefault();
+          setRestartUser(null);
+        }}
+        onClick={(event) => {
+          if (event.target === event.currentTarget) setRestartUser(null);
+        }}
+        aria-labelledby="restart-title"
+        aria-describedby="restart-description"
+        className="fixed inset-0 m-auto max-h-[calc(100%-2rem)] w-[calc(100%-2rem)] max-w-sm overflow-y-auto rounded-2xl bg-canvas p-0 text-ink shadow-md backdrop:bg-ink/45"
+      >
+        <div className="p-6">
+          <p className="text-xs font-semibold uppercase tracking-wide text-brand">
+            Konfirmasi
+          </p>
+          <h2 id="restart-title" className="mt-2 text-xl font-extrabold text-ink">
+            Hapus data dan mulai ulang?
+          </h2>
+          <p id="restart-description" className="mt-3 text-sm leading-relaxed text-gray-500">
+            Akun <span className="font-semibold text-ink">{restartUser?.username}</span> sudah tersimpan. Jika kamu mulai ulang, semua data check-in, jurnal, dan riwayat akan dihapus permanen. Tindakan ini tidak bisa dibatalkan.
+          </p>
+          <div className="mt-6 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
+            <button
+              type="button"
+              autoFocus
+              onClick={() => setRestartUser(null)}
+              className="min-h-11 rounded-xl bg-white px-4 text-sm font-semibold text-ink transition-colors hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+            >
+              Batal
+            </button>
+            <button
+              type="button"
+              onClick={handleConfirmRestart}
+              className="min-h-11 rounded-xl bg-accent px-4 text-sm font-semibold text-white transition-colors hover:bg-accent/90 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+            >
+              Hapus dan mulai ulang
+            </button>
+          </div>
+        </div>
+      </dialog>
     </div>
   );
 }

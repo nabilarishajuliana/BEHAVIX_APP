@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { Download, Lightbulb, LockKeyhole, Upload } from "lucide-react";
 import { exportData, importData } from "../utils/backup";
 
 export default function BackupScreen({ goBack }) {
@@ -8,7 +9,7 @@ export default function BackupScreen({ goBack }) {
   function handleExport() {
     try {
       exportData();
-      setStatus({ type: "success", msg: "Data berhasil di-download. Simpan file JSON-mu di tempat aman ya 🌱" });
+      setStatus({ type: "success", msg: "Data berhasil di-download. Simpan file JSON-mu di tempat aman." });
     } catch (err) {
       setStatus({ type: "error", msg: "Gagal export: " + err.message });
     }
@@ -55,7 +56,7 @@ export default function BackupScreen({ goBack }) {
 
       {/* Info box */}
       <div className="bg-brand/10 rounded-2xl p-4 mb-5">
-        <p className="text-xs font-bold text-brand mb-1">🔒 KENAPA INI PENTING?</p>
+        <p className="mb-1 flex items-center gap-2 text-xs font-bold text-brand"><LockKeyhole size={14} aria-hidden="true" /> KENAPA INI PENTING?</p>
         <p className="text-sm text-ink leading-relaxed">
           BEHAVIX nyimpen semua data di HP kamu (bukan server), jadi kalau kamu clear browser atau ganti HP, data bisa hilang. Backup rutin biar aman.
         </p>
@@ -64,7 +65,7 @@ export default function BackupScreen({ goBack }) {
       {/* Export */}
       <div className="bg-white rounded-2xl p-5 shadow-sm mb-3">
         <div className="flex items-start gap-3 mb-3">
-          <div className="text-2xl">📤</div>
+          <Download className="shrink-0 text-brand" size={22} aria-hidden="true" />
           <div className="flex-1">
             <p className="font-bold text-ink">Export Data</p>
             <p className="text-xs text-gray-500 mt-0.5">
@@ -83,7 +84,7 @@ export default function BackupScreen({ goBack }) {
       {/* Import */}
       <div className="bg-white rounded-2xl p-5 shadow-sm mb-3">
         <div className="flex items-start gap-3 mb-3">
-          <div className="text-2xl">📥</div>
+          <Upload className="shrink-0 text-brand" size={22} aria-hidden="true" />
           <div className="flex-1">
             <p className="font-bold text-ink">Restore Data</p>
             <p className="text-xs text-gray-500 mt-0.5">
@@ -120,7 +121,7 @@ export default function BackupScreen({ goBack }) {
       )}
 
       <p className="text-xs text-gray-400 text-center mt-6">
-        💡 Tip: simpan file backup di Google Drive atau email ke diri sendiri.
+        <Lightbulb className="mr-1 inline-block" size={14} aria-hidden="true" /> Tip: simpan file backup di Google Drive atau email ke diri sendiri.
       </p>
     </div>
   );

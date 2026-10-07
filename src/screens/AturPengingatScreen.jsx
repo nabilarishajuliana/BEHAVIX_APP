@@ -39,13 +39,13 @@ export default function AturPengingatScreen({ goBack }) {
             className="w-full bg-canvas rounded-xl px-4 py-3 outline-none text-ink text-lg font-bold"
           />
           <p className="text-xs text-gray-500 mt-3">
-            🌱 Kamu akan diingatkan tiap hari jam {jam}
+            Kamu akan diingatkan tiap hari jam {jam}
           </p>
         </div>
       )}
 
       <p className="text-xs text-gray-400 text-center mt-auto mb-4">
-        Pengingat cuma buat ngingetin, bukan maksa 🙂
+        Pengingat hanya untuk mengingatkan, bukan memaksa.
       </p>
 
       <button

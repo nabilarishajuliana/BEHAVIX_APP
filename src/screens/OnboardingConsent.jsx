@@ -1,10 +1,11 @@
 import { storage, KEYS } from "../utils/storage";
+import { HeartHandshake, LockKeyhole, Smartphone, Trash2 } from "lucide-react";
 
 const POINTS = [
-  { icon: "📱", text: "Data disimpan di HP-mu — nggak dikirim ke server manapun." },
-  { icon: "🔒", text: "Nggak dibagikan ke siapa pun." },
-  { icon: "🗑️", text: "Bisa kamu hapus kapan aja." },
-  { icon: "💚", text: "Ini alat bantu, bukan pengganti profesional." },
+  { icon: Smartphone, text: "Data disimpan di perangkat dan tidak dikirim ke server." },
+  { icon: LockKeyhole, text: "Data kamu tidak dibagikan kepada pihak lain." },
+  { icon: Trash2, text: "Data dapat dihapus kapan saja." },
+  { icon: HeartHandshake, text: "Aplikasi ini dirancang sebagai alat bantu, bukan pengganti tenaga profesional." },
 ];
 
 export default function OnboardingConsent({ params, navigate, goBack }) {
@@ -30,13 +31,13 @@ export default function OnboardingConsent({ params, navigate, goBack }) {
         <div className="w-10" />
       </div>
 
-      <h1 className="text-2xl font-extrabold text-ink mb-2">Privasimu</h1>
-      <p className="text-sm text-gray-500 mb-6">Singkat aja, biar kamu tenang:</p>
+      <h1 className="text-2xl font-extrabold text-ink mb-2">Privasi & Keamanan</h1>
+      <p className="text-sm text-gray-500 mb-6">Data kamu tetap berada di perangkatmu.</p>
 
       <div className="flex flex-col gap-3 mb-auto">
         {POINTS.map((p, i) => (
           <div key={i} className="bg-white rounded-2xl p-4 shadow-sm flex items-start gap-3">
-            <div className="text-2xl">{p.icon}</div>
+            <p.icon className="mt-0.5 shrink-0 text-brand" size={21} aria-hidden="true" />
             <p className="text-sm text-ink leading-relaxed">{p.text}</p>
           </div>
         ))}

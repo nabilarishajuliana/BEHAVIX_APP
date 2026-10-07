@@ -1,10 +1,10 @@
 // Pilihan-pilihan di form check-in
 export const MOOD_OPTIONS = [
-  { id: "buruk_banget", label: "Buruk banget", emoji: "😖" },
-  { id: "kurang_oke",   label: "Kurang oke",   emoji: "😔" },
-  { id: "biasa",        label: "Biasa aja",    emoji: "😐" },
-  { id: "lumayan",      label: "Lumayan",      emoji: "🙂" },
-  { id: "baik_banget",  label: "Baik banget",  emoji: "😄" },
+  { id: "buruk_banget", label: "Buruk banget" },
+  { id: "kurang_oke",   label: "Kurang oke" },
+  { id: "biasa",        label: "Biasa aja" },
+  { id: "lumayan",      label: "Lumayan" },
+  { id: "baik_banget",  label: "Baik banget" },
 ];
 
 export const AKTIVITAS_CHIPS = [

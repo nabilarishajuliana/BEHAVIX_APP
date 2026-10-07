@@ -4,7 +4,6 @@ import { storage, KEYS } from "../utils/storage";
 export default function HistoryScreen({ navigate }) {
   const quests = storage.get(KEYS.quests, {});
   const urgeSessions = storage.get("behavix_urge", []);
-  const checkins = storage.get(KEYS.checkins, []);
 
   // Aktivitas paling sering dicoba (top 5)
   const topActivities = Object.entries(quests)
@@ -30,8 +29,8 @@ export default function HistoryScreen({ navigate }) {
   const WARNA = {
     Tenang: "bg-brand/15 text-brand",
     Gerak: "bg-accent/15 text-accent",
-    Kreatif: "bg-lav/25 text-purple-700",
-    Sosial: "bg-sunny/30 text-yellow-700",
+    Kreatif: "bg-lav/25 text-brand",
+    Sosial: "bg-sunny/30 text-accent",
   };
 
   return (
@@ -51,7 +50,6 @@ export default function HistoryScreen({ navigate }) {
       {/* Empty state */}
       {totalIntervensi === 0 && urgeCount === 0 ? (
         <div className="bg-white rounded-2xl p-8 shadow-sm text-center">
-          <p className="text-4xl mb-3">🌱</p>
           <p className="text-ink font-semibold mb-1">Belum ada riwayat</p>
           <p className="text-sm text-gray-500">
             Coba salah satu Quest atau Urge Surfing dulu.
@@ -76,13 +74,13 @@ export default function HistoryScreen({ navigate }) {
           {/* Statistik Urge Surfing */}
           {urgeCount > 0 && avgAfter && (
             <div className="bg-white rounded-2xl p-4 shadow-sm mb-5">
-              <p className="font-bold text-ink mb-2">🌊 Efek Urge Surfing</p>
+              <p className="font-bold text-ink mb-2">Efek Urge Surfing</p>
               <p className="text-sm text-gray-600 leading-relaxed">
                 Rata-rata intensitas dorongan <b>setelah</b> sesi napas:{" "}
                 <span className="text-brand font-bold text-lg">{avgAfter}/10</span>
               </p>
               <p className="text-xs text-gray-400 mt-2">
-                Latihan napas bantu kamu turunin intensitas dorongan 🌱
+                Latihan napas membantu menurunkan intensitas dorongan.
               </p>
             </div>
           )}

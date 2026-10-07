@@ -81,7 +81,7 @@ export default function CheckinScreen({ navigate, goBack }) {
           </div>
           <div className="w-10" />
         </div>
-        <p className="text-sm text-brand font-medium">Check-in harian · sebentar aja 🌱</p>
+        <p className="text-sm text-brand font-medium">Check-in harian · sebentar saja</p>
       </div>
 
       <div className="px-5 -mt-3">
@@ -101,7 +101,6 @@ export default function CheckinScreen({ navigate, goBack }) {
                   : "bg-white/70 shadow-sm"
               }`}
             >
-              <div className="text-3xl mb-1">{m.emoji}</div>
               <div className="text-[10px] leading-tight text-gray-600">{m.label}</div>
             </button>
           ))}
@@ -121,7 +120,7 @@ export default function CheckinScreen({ navigate, goBack }) {
                 : "bg-white shadow-sm text-ink"
             }`}
           >
-            😌 Nggak
+            Nggak
           </button>
           <button
             onClick={() => setAdaDorongan(true)}
@@ -131,7 +130,7 @@ export default function CheckinScreen({ navigate, goBack }) {
                 : "bg-white shadow-sm text-ink"
             }`}
           >
-            🌊 Iya
+            Iya
           </button>
         </div>
 
@@ -187,7 +186,7 @@ export default function CheckinScreen({ navigate, goBack }) {
         )}
 
         <p className="text-xs text-gray-400 text-center mt-4">
-          🕐 Jam & tanggal keisi otomatis
+          Jam dan tanggal terisi otomatis
         </p>
       </div>
 
@@ -200,7 +199,7 @@ export default function CheckinScreen({ navigate, goBack }) {
             bisaLanjut && !loading ? "bg-accent shadow-lg" : "bg-gray-300"
           }`}
         >
-          {loading ? "Menganalisis... 🌊" : "Lanjut →"}
+          {loading ? "Menganalisis..." : "Lanjut →"}
         </button>
       </div>
     </div>

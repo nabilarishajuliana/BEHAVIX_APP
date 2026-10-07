@@ -30,4 +30,5 @@ export const KEYS = {
   checkins: "behavix_checkins", // array check-in
   journal: "behavix_journal",   // array jurnal
   quests: "behavix_quests",     // { id: { doneCount } }
+  theme: "behavix_theme",
 };

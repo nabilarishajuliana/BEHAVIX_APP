@@ -3,8 +3,8 @@ import { GUDANG_SARAN } from "../data/gudangSaran";
 const WARNA_KATEGORI = {
   Tenang: "bg-brand/15 text-brand",
   Gerak: "bg-accent/15 text-accent",
-  Kreatif: "bg-lav/25 text-purple-700",
-  Sosial: "bg-sunny/25 text-yellow-700",
+  Kreatif: "bg-lav/25 text-brand",
+  Sosial: "bg-sunny/25 text-accent",
 };
 
 export default function InsightScreen({ params, navigate, goBack }) {
@@ -17,7 +17,7 @@ export default function InsightScreen({ params, navigate, goBack }) {
     <div className="min-h-screen bg-canvas font-sans p-5 pb-10">
       <div className="flex items-center gap-3 mb-5">
         <button onClick={goBack} className="w-9 h-9 rounded-lg border border-gray-300">‹</button>
-        <h1 className="font-bold text-ink">🌱 Behavix Insight</h1>
+        <h1 className="font-bold text-ink">Behavix Insight</h1>
       </div>
 
       {/* kartu pemicu */}
@@ -25,7 +25,7 @@ export default function InsightScreen({ params, navigate, goBack }) {
         <p className="text-xs font-bold text-brand tracking-wide mb-1">◆ POLA YANG KEBACA</p>
         <h2 className="text-2xl font-extrabold text-ink mb-2">{result.pemicu_label}</h2>
         <p className="text-sm text-gray-600 leading-relaxed">{result.deskripsi}</p>
-        <p className="text-xs text-gray-500 mt-3">🌱 Ini bukan penilaian, ya — cuma pola yang sering muncul.</p>
+        <p className="text-xs text-gray-500 mt-3">Ini bukan penilaian, hanya pola yang sering muncul.</p>
       </div>
 
       <h3 className="text-lg font-bold text-ink mb-1">Coba salah satu ini yuk:</h3>

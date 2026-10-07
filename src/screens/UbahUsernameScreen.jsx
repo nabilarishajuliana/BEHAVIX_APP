@@ -29,8 +29,8 @@ export default function UbahUsernameScreen({ goBack }) {
         className="w-full bg-white rounded-2xl px-4 py-3.5 shadow-sm outline-none text-ink mb-3"
       />
 
-      <div className="bg-sunny/30 rounded-xl p-3 text-xs text-yellow-800 mb-auto">
-        🔒 Masih pakai nama apapun — nggak harus nama asli.
+      <div className="bg-sunny/30 rounded-xl p-3 text-xs text-ink mb-auto">
+        Kamu bisa menggunakan nama apa pun; tidak harus nama asli.
       </div>
 
       <button

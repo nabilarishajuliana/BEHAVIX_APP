@@ -18,9 +18,8 @@ export default function OnboardingUsername({ navigate, goBack }) {
       </div>
 
       <div className="flex-1 flex flex-col items-center justify-center text-center">
-        <div className="text-5xl mb-4">👋</div>
-        <h1 className="text-2xl font-extrabold text-ink mb-2">Mau dipanggil apa?</h1>
-        <p className="text-sm text-gray-500 mb-8">Bikin username buat identitasmu di sini.</p>
+        <h1 className="text-2xl font-extrabold text-ink mb-2">Buat username kamu!</h1>
+        <p className="text-sm text-gray-500 mb-8">Pilih username untuk digunakan sebagai identitasmu di aplikasi.</p>
 
         <input
           value={username}
@@ -29,8 +28,8 @@ export default function OnboardingUsername({ navigate, goBack }) {
           className="w-full bg-white rounded-2xl px-4 py-3.5 shadow-sm outline-none text-ink text-center mb-4"
         />
 
-        <div className="w-full bg-sunny/30 rounded-xl p-3 text-xs text-yellow-800 text-center">
-          🔒 Pakai nama apapun — nggak harus nama asli. Ini buat jaga privasimu.
+        <div className="w-full bg-sunny/30 rounded-xl p-3 text-xs text-ink text-center">
+          Username ini akan digunakan sebagai identitasmu di aplikasi.
         </div>
       </div>
 
