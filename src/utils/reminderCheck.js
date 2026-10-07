@@ -28,7 +28,7 @@ export function cekReminder() {
   // Semua kondisi kepenuhi → tampilkan reminder
   return {
     jam: user.reminderTime,
-    teks: `Kamu udah pasang pengingat check-in jam ${user.reminderTime}. Yuk luangin waktu bentar buat check-in hari ini 🌱`,
+    teks: `Kamu memasang pengingat check-in pukul ${user.reminderTime}. Luangkan waktu sejenak untuk check-in hari ini.`,
   };
 }
 

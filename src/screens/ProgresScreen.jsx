@@ -80,27 +80,23 @@ function bikinFeedback(checkins) {
   // prioritas 1: streak panjang
   if (streak >= 7) {
     return {
-      emoji: "🌟",
       teks: `Kamu udah check-in ${streak} hari berturut-turut. Konsistensi kamu keren banget!`,
     };
   }
   // prioritas 2: penurunan dorongan
   if (mingguan && mingguan.perubahan <= -20) {
     return {
-      emoji: "🎉",
-      teks: `Dorongan kamu turun ${Math.abs(mingguan.perubahan)}% dibanding minggu lalu! Usaha kamu kebaca banget. Terus jalan, ya 💛`,
+      teks: `Dorongan kamu turun ${Math.abs(mingguan.perubahan)}% dibanding minggu lalu. Usaha yang kamu lakukan terlihat.`,
     };
   }
   // prioritas 3: naik dikit → tetep suportif
   if (mingguan && mingguan.perubahan > 20) {
     return {
-      emoji: "💚",
       teks: `Minggu ini agak berat ya. Nggak apa-apa — kamu tetap datang & check-in, itu udah langkah besar.`,
     };
   }
   // default: pesan hangat
   return {
-    emoji: "🌱",
     teks: `Setiap check-in itu bentuk peduli sama diri sendiri. Terus jalan pelan-pelan.`,
   };
 }
@@ -112,12 +108,11 @@ export default function ProgresScreen({ navigate }) {
   if (checkins.length === 0) {
     return (
       <div className="min-h-screen bg-canvas font-sans p-5 pb-24">
-        <h1 className="text-2xl font-extrabold text-ink mb-1">Progres kamu 🌿</h1>
+        <h1 className="text-2xl font-extrabold text-ink mb-1">Progres kamu</h1>
         <p className="text-sm text-gray-500 mb-10">
           Ini rapor usaha kamu — bukan buat ngukur, tapi ngerayain.
         </p>
         <div className="bg-white rounded-2xl p-8 shadow-sm text-center">
-          <p className="text-4xl mb-3">🌱</p>
           <p className="text-ink font-semibold mb-1">Belum ada data</p>
           <p className="text-sm text-gray-500">Yuk mulai check-in pertamamu!</p>
         </div>
@@ -150,7 +145,7 @@ export default function ProgresScreen({ navigate }) {
 
   return (
     <div className="min-h-screen bg-canvas font-sans p-5 pb-24">
-      <h1 className="text-2xl font-extrabold text-ink mb-1">Progres kamu 🌿</h1>
+      <h1 className="text-2xl font-extrabold text-ink mb-1">Progres kamu</h1>
       <p className="text-sm text-gray-500 mb-4">
         Ini rapor usaha kamu — bukan buat ngukur, tapi ngerayain.
       </p>
@@ -159,7 +154,7 @@ export default function ProgresScreen({ navigate }) {
       <div className="bg-brand rounded-2xl p-5 text-white mb-4">
         <p className="text-xs font-semibold opacity-90">STREAK KAMU</p>
         <p className="text-4xl font-extrabold">
-          {streak} <span className="text-lg font-bold">hari 🌱</span>
+          {streak} <span className="text-lg font-bold">hari</span>
         </p>
       </div>
 
@@ -171,7 +166,7 @@ export default function ProgresScreen({ navigate }) {
             <XAxis dataKey="name" tick={{ fontSize: 11 }} />
             <YAxis domain={[0, 5]} hide />
             <Tooltip />
-            <Line type="monotone" dataKey="mood" stroke="#4FB3A6" strokeWidth={3} dot={{ r: 4 }} />
+            <Line type="monotone" dataKey="mood" stroke="var(--color-brand)" strokeWidth={3} dot={{ r: 4 }} />
           </LineChart>
         </ResponsiveContainer>
       </div>
@@ -187,7 +182,7 @@ export default function ProgresScreen({ navigate }) {
             <XAxis dataKey="name" tick={{ fontSize: 11 }} />
             <YAxis hide />
             <Tooltip />
-            <Bar dataKey="jumlah" fill="#B8A7E0" radius={[6, 6, 0, 0]} />
+            <Bar dataKey="jumlah" fill="var(--color-lav)" radius={[6, 6, 0, 0]} />
           </BarChart>
         </ResponsiveContainer>
       </div>
@@ -196,14 +191,14 @@ export default function ProgresScreen({ navigate }) {
       <div className="bg-white rounded-2xl p-4 shadow-sm mb-4">
         <p className="font-bold text-ink mb-3">Pemicu tersering</p>
         {pemicuData.length === 0 ? (
-          <p className="text-sm text-gray-400">Belum ada pemicu tercatat. Bagus! 🌱</p>
+          <p className="text-sm text-gray-400">Belum ada pemicu yang tercatat.</p>
         ) : (
           <ResponsiveContainer width="100%" height={pemicuData.length * 42}>
             <BarChart data={pemicuData} layout="vertical" margin={{ left: 20 }}>
               <XAxis type="number" hide />
               <YAxis type="category" dataKey="name" tick={{ fontSize: 12 }} width={90} />
               <Tooltip />
-              <Bar dataKey="jumlah" fill="#FF8A65" radius={[0, 6, 6, 0]}>
+              <Bar dataKey="jumlah" fill="var(--color-accent)" radius={[0, 6, 6, 0]}>
                 {pemicuData.map((_, i) => <Cell key={i} />)}
               </Bar>
             </BarChart>
@@ -214,9 +209,8 @@ export default function ProgresScreen({ navigate }) {
       {/* ============================== */}
       {/* KARTU FEEDBACK (Progress Evaluation) */}
       {/* ============================== */}
-      <div className="bg-gradient-to-br from-brand/15 to-sunny/20 rounded-2xl p-5 mb-4">
+      <div className="bg-linear-to-br from-brand/15 to-sunny/20 rounded-2xl p-5 mb-4">
         <div className="flex items-start gap-3">
-          <div className="text-3xl">{feedback.emoji}</div>
           <div>
             <p className="text-xs font-bold text-brand tracking-wide mb-1">
               PROGRES KAMU MINGGU INI
@@ -232,9 +226,8 @@ export default function ProgresScreen({ navigate }) {
       {mandek && (
         <div className="bg-lav/25 border border-lav rounded-2xl p-5 mb-4">
           <div className="flex items-start gap-3">
-            <div className="text-3xl">🤝</div>
             <div className="flex-1">
-              <p className="text-xs font-bold text-purple-700 tracking-wide mb-1">
+              <p className="text-xs font-bold text-brand tracking-wide mb-1">
                 CUMA SARAN LEMBUT
               </p>
               <p className="text-sm text-ink leading-relaxed mb-3">
@@ -243,7 +236,7 @@ export default function ProgresScreen({ navigate }) {
               </p>
               <button
                 onClick={() => navigate("konsultasi")}
-                className="text-xs bg-white rounded-full px-3 py-1.5 font-bold text-purple-700"
+                className="text-xs bg-white rounded-full px-3 py-1.5 font-bold text-brand"
               >
                 Lihat opsi konsultasi →
               </button>

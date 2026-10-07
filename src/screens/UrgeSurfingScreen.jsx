@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import { Music2, VolumeX } from "lucide-react";
 import BreathingTimer from "../components/BreathingTimer";
 import { storage } from "../utils/storage";
 
@@ -64,7 +65,7 @@ export default function UrgeSurfingScreen({ goBack }) {
                 : "border-white/30 text-white/60"
             }`}
           >
-            <span>{musikOn ? "🎵" : "🔇"}</span>
+            {musikOn ? <Music2 size={16} aria-hidden="true" /> : <VolumeX size={16} aria-hidden="true" />}
             <span>{musikOn ? "Musik nyala" : "Musik mati"}</span>
           </button>
         )}
@@ -73,7 +74,7 @@ export default function UrgeSurfingScreen({ goBack }) {
       {phase === "napas" ? (
         <>
           <h1 className="text-white text-xl font-bold text-center mt-6 mb-1">
-            Tarik napas bareng, yuk 🌊
+            Tarik napas perlahan
           </h1>
           <p className="text-white/60 text-sm text-center mb-10">
             Nggak usah mikir apa-apa. Cukup ikutin lingkarannya.
@@ -87,7 +88,7 @@ export default function UrgeSurfingScreen({ goBack }) {
         </>
       ) : (
         <div className="flex-1 flex flex-col justify-center items-center text-center">
-          <h1 className="text-white text-2xl font-bold mb-2">Kamu berhasil 🎉</h1>
+          <h1 className="text-white text-2xl font-bold mb-2">Sesi selesai</h1>
           <p className="text-white/70 text-sm mb-8">Gimana rasanya sekarang?</p>
           <div className="w-full max-w-xs bg-white/10 rounded-2xl p-5 mb-8">
             <p className="text-white text-sm mb-3">

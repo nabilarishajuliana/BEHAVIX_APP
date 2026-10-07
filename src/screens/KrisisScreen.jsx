@@ -1,3 +1,5 @@
+import { Phone } from "lucide-react";
+
 const HOTLINE = [
   { nama: "SEJIWA (Kemenkes)", nomor: "119 ext 8", jam: "24 jam" },
   { nama: "Into The Light", nomor: "119 ext 8", jam: "24 jam" },
@@ -14,7 +16,7 @@ export default function KrisisScreen({ goBack }) {
 
       <div className="bg-red-50 border-2 border-red-200 rounded-2xl p-4 mb-5">
         <p className="text-sm text-red-800 leading-relaxed">
-          Kalau kamu lagi ngerasa berat banget atau ada pikiran buat nyakitin diri, <b>hubungi salah satu ini sekarang</b>. Kamu nggak sendirian. 💚
+          Kalau kamu merasa sangat berat atau memiliki pikiran untuk menyakiti diri, <b>hubungi salah satu layanan ini sekarang</b>. Kamu tidak sendirian.
         </p>
       </div>
 
@@ -27,14 +29,14 @@ export default function KrisisScreen({ goBack }) {
               href={`tel:${h.nomor.replace(/\s|-/g, "")}`}
               className="w-full bg-red-500 text-white rounded-xl py-3 font-bold text-center block"
             >
-              📞 Telepon {h.nomor}
+              <span className="inline-flex items-center justify-center gap-2"><Phone size={16} aria-hidden="true" /> Telepon {h.nomor}</span>
             </a>
           </div>
         ))}
       </div>
 
-      <div className="bg-yellow-50 rounded-xl p-3 text-xs text-yellow-800 mt-6">
-        ⚠️ Kalau kamu dalam bahaya langsung, hubungi <b>119</b> atau ke IGD terdekat sekarang juga.
+      <div className="bg-sunny/30 rounded-xl p-3 text-xs text-ink mt-6">
+        Jika kamu dalam bahaya langsung, hubungi <b>119</b> atau pergi ke IGD terdekat sekarang.
       </div>
     </div>
   );

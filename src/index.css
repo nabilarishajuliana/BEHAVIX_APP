@@ -1,12 +1,95 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand:  #4FB3A6;   /* teal — utama */
-  --color-accent: #FF8A65;   /* coral — tombol */
-  --color-sunny:  #FFD166;   /* kuning lembut */
-  --color-lav:    #B8A7E0;   /* lavender */
-  --color-deep:   #2C3E63;   /* navy — urge surfing */
-  --color-canvas: #FAF9F6;   /* background */
-  --color-ink:    #2E3A3A;   /* teks */
+  --color-brand:  #267EAE;
+  --color-accent: #173F5F;
+  --color-sunny:  #6DB7DA;
+  --color-lav:    #C2DCEA;
+  --color-deep:   #123551;
+  --color-canvas: #F4F7F9;
+  --color-ink:    #1C3444;
   --font-sans: "Nunito", ui-sans-serif, sans-serif;
+}
+
+html {
+  color-scheme: light;
+}
+
+body,
+#root {
+  min-height: 100%;
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --color-brand: #69B8DF;
+  --color-accent: #8BC9E8;
+  --color-sunny: #D4B36E;
+  --color-lav: #9D91C0;
+  --color-deep: #071E30;
+  --color-canvas: #101D29;
+  --color-ink: #E7EFF4;
+  background-color: var(--color-canvas);
+}
+
+:root[data-theme="dark"] .bg-white {
+  background-color: #1C2B38;
+}
+
+:root[data-theme="dark"] .bg-gray-50 {
+  background-color: #253542;
+}
+
+:root[data-theme="dark"] .bg-gray-100 {
+  background-color: #293C4B;
+}
+
+:root[data-theme="dark"] .bg-brand {
+  background-color: #205D7D;
+}
+
+:root[data-theme="dark"] .bg-accent {
+  background-color: #1A4966;
+}
+
+:root[data-theme="dark"] .text-gray-600 {
+  color: #C8D2DB;
+}
+
+:root[data-theme="dark"] .text-gray-500 {
+  color: #B3C0CA;
+}
+
+:root[data-theme="dark"] .text-gray-400 {
+  color: #98A8B5;
+}
+
+:root[data-theme="dark"] .text-gray-300 {
+  color: #80909F;
+}
+
+:root[data-theme="dark"] .border-gray-100 {
+  border-color: #293947;
+}
+
+:root[data-theme="dark"] .border-gray-200 {
+  border-color: #334654;
+}
+
+:root[data-theme="dark"] .border-gray-300 {
+  border-color: #536470;
+}
+
+:root[data-theme="dark"] .bg-red-50 {
+  background-color: #462B30;
+}
+
+:root[data-theme="dark"] .border-red-200 {
+  border-color: #804753;
+}
+
+:root[data-theme="dark"] .text-red-800 {
+  color: #FFB6B0;
 }

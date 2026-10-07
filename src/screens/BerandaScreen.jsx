@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { ArrowRight, Clock3, Lightbulb, X } from "lucide-react";
 import { storage, KEYS } from "../utils/storage";
 import { cekNudgePreventif } from "../utils/nudge";
 import { getQuoteHariIni } from "../data/quotes";
@@ -55,184 +56,175 @@ export default function BerandaScreen({ navigate }) {
   }
 
   return (
-    <div className="min-h-screen bg-canvas font-sans p-5 pb-24 overflow-x-hidden">
-      {/* subtle gradient background */}
-      <div
-        className="fixed top-0 left-0 right-0 h-64 pointer-events-none opacity-40 -z-10"
-        style={{
-          background: "radial-gradient(ellipse at top, rgba(79,179,166,0.15), transparent 70%)",
-        }}
-      />
-
-      {/* Header */}
-      <div
-        className={`mb-5 transition-all duration-500 ${
-          mounted ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2"
+    <div className="mx-auto min-h-screen max-w-105 overflow-x-hidden bg-canvas px-5 pb-28 pt-6 font-sans">
+      <header
+        className={`mb-6 transition-all duration-500 ease-out ${
+          mounted ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"
         }`}
       >
-        <h1 className="text-2xl font-extrabold text-ink">{greeting()} 🌱</h1>
-        <p className="text-sm text-gray-500 mt-1">
-          Hai, <span className="font-bold text-brand">{user.username}</span> 👋
+        <h1 className="text-2xl font-extrabold text-ink">{greeting()}</h1>
+        <p className="mt-1 text-sm text-gray-500">
+          Hai, <span className="font-semibold text-brand">{user.username}</span>
         </p>
-      </div>
+      </header>
 
-      {/* ==================== */}
-      {/* KARTU REMINDER       */}
-      {/* ==================== */}
       {reminder && (
-        <div
-          className={`bg-gradient-to-r from-accent/15 to-sunny/25 border border-accent/30 rounded-2xl p-4 mb-4 transition-all duration-500 ${
-            mounted ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-3"
+        <section
+          className={`mb-4 rounded-2xl bg-white p-4 shadow-sm transition-all duration-500 ease-out ${
+            mounted ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"
           }`}
+          style={{ transitionDelay: "100ms" }}
+          aria-label="Pengingat harian"
         >
           <div className="flex items-start gap-3">
-            <div className="text-2xl">⏰</div>
-            <div className="flex-1">
-              <div className="flex items-start justify-between gap-2 mb-1">
-                <p className="text-xs font-bold text-accent tracking-wide">
-                  PENGINGAT KAMU
+            <Clock3 className="mt-0.5 shrink-0 text-brand" size={18} aria-hidden="true" />
+            <div className="min-w-0 flex-1">
+              <div className="flex items-center justify-between gap-2">
+                <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">
+                  Pengingat harian
                 </p>
                 <button
+                  type="button"
                   onClick={handleDismissReminder}
-                  className="text-gray-400 text-xs -mt-0.5"
-                  aria-label="Tutup"
+                  className="-mr-2 -mt-2 flex min-h-11 min-w-11 items-center justify-center rounded-full text-gray-500 transition-colors hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+                  aria-label="Tutup pengingat hari ini"
                 >
-                  ✕
+                  <X size={18} aria-hidden="true" />
                 </button>
               </div>
-              <p className="text-sm text-ink leading-relaxed mb-3">
-                {reminder.teks}
-              </p>
+              <p className="mt-1 text-sm leading-relaxed text-ink">{reminder.teks}</p>
               <button
+                type="button"
                 onClick={() => navigate("checkin")}
-                className="text-xs bg-accent text-white rounded-full px-4 py-2 font-bold"
+                className="mt-2 inline-flex min-h-11 items-center gap-1 rounded-xl px-2 text-sm font-semibold text-brand transition-colors hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
               >
-                Check-in sekarang →
+                Mulai check-in <ArrowRight size={15} aria-hidden="true" />
               </button>
             </div>
           </div>
-        </div>
+        </section>
       )}
 
-      {/* ==================== */}
-      {/* QUOTE HARIAN         */}
-      {/* ==================== */}
-      <div
-        className={`bg-gradient-to-br from-sunny/30 to-lav/20 rounded-2xl p-5 mb-4 transition-all duration-700 delay-100 ${
-          mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
+      <section
+        className={`mb-7 px-1 py-2 transition-all duration-500 ease-out ${
+          mounted ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"
         }`}
+        style={{ transitionDelay: "200ms" }}
+        aria-label="Refleksi hari ini"
       >
-        <div className="flex items-start gap-3">
-          <div className="text-3xl">{quote.emoji}</div>
-          <div>
-            <p className="text-xs font-bold text-brand tracking-wide mb-1">
-              💭 UNTUK HARI INI
-            </p>
-            <p className="text-sm text-ink leading-relaxed italic">
-              "{quote.teks}"
-            </p>
-          </div>
+        <div className="mb-1 flex items-center gap-2">
+          <span className="text-3xl font-semibold leading-none text-brand/70" aria-hidden="true">
+            “
+          </span>
+          <p className="text-xs font-semibold text-brand">Pengingat hari ini</p>
         </div>
-      </div>
+        <blockquote className="-mt-1 pl-7 text-[17px] font-medium leading-7 text-ink">
+          {quote.teks}
+        </blockquote>
+      </section>
 
-      {/* ==================== */}
-      {/* MINI WIDGET PROGRES  */}
-      {/* ==================== */}
-      <div
-        className={`grid grid-cols-2 gap-3 mb-4 transition-all duration-700 delay-200 ${
-          mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
+      <section
+        className={`mb-4 grid grid-cols-2 gap-3 transition-all duration-500 ease-out ${
+          mounted ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"
         }`}
+        style={{ transitionDelay: "300ms" }}
+        aria-label="Ringkasan progres"
       >
         <button
+          type="button"
           onClick={() => navigate("progres")}
-          className="bg-brand rounded-2xl p-4 text-white text-left active:scale-95 transition"
+          className="flex min-h-34 flex-col items-start justify-between rounded-2xl bg-brand p-4 text-left text-white transition duration-150 hover:bg-brand/95 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+          aria-label={`Lihat progres, ${streak} hari check-in berturut-turut`}
         >
-          <p className="text-xs font-semibold opacity-90">STREAK</p>
-          <p className="text-3xl font-extrabold mt-1">
-            {streak} <span className="text-sm font-bold">hari</span>
-          </p>
-          <p className="text-xs opacity-90 mt-1">🌱 keep going</p>
+          <span className="text-[10px] font-semibold uppercase tracking-wide text-white/85">
+            Streak saat ini
+          </span>
+          <span className="mt-2 text-4xl font-extrabold leading-none">{streak}</span>
+          <span className="mt-1 text-xs text-white/90">hari berturut-turut</span>
+          <span className="mt-2 text-[11px] text-white/80">Satu hari pada satu waktu.</span>
         </button>
 
         <button
+          type="button"
           onClick={() => navigate("progres")}
-          className="bg-white rounded-2xl p-4 shadow-sm text-left active:scale-95 transition"
+          className="flex min-h-34 flex-col rounded-2xl bg-white p-4 text-left shadow-sm transition duration-150 hover:bg-gray-50 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+          aria-label={`Lihat progres suasana hati tujuh hari${avgMood ? `, rata-rata ${avgMood} dari 5` : ""}`}
         >
-          <p className="text-xs font-semibold text-gray-500">MOOD 7 HARI</p>
-          {mood7.length === 0 ? (
-            <p className="text-xs text-gray-400 mt-2">Belum ada data</p>
-          ) : (
-            <>
-              <div className="flex items-end gap-1 h-8 mt-2">
-                {mood7.map((v, i) => (
-                  <div
-                    key={i}
-                    className="flex-1 bg-brand/60 rounded-t"
-                    style={{ height: `${(v / 5) * 100}%` }}
-                  />
-                ))}
-              </div>
-              <p className="text-xs text-gray-500 mt-1">
-                Rata-rata: <b className="text-brand">{avgMood}/5</b>
-              </p>
-            </>
-          )}
+          <span className="text-[10px] font-semibold uppercase tracking-wide text-gray-500">
+            Mood 7 hari
+          </span>
+          <div className="mt-3 flex h-9 w-full items-end gap-1" aria-hidden="true">
+            {(mood7.length > 0 ? mood7 : Array(7).fill(0)).map((value, index) => (
+              <span
+                key={index}
+                className={`min-w-0 flex-1 rounded-t-sm ${value ? "bg-brand/55" : "bg-brand/10"}`}
+                style={{ height: `${value ? Math.max(18, (value / 5) * 100) : 18}%` }}
+              />
+            ))}
+          </div>
+          <span className="mt-auto pt-2 text-xs text-gray-500">
+            Rata-rata <strong className="font-semibold text-ink">{avgMood ? `${avgMood}/5` : "--"}</strong>
+          </span>
         </button>
-      </div>
+      </section>
 
-      {/* ==================== */}
-      {/* KARTU CHECK-IN       */}
-      {/* ==================== */}
-      <div
-        className={`bg-white rounded-2xl p-5 shadow-sm mb-4 transition-all duration-700 delay-300 ${
-          mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
+      <section
+        className={`mb-4 rounded-2xl bg-white p-5 shadow-sm transition-all duration-500 ease-out ${
+          mounted ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"
         }`}
+        style={{ transitionDelay: "400ms" }}
+        aria-labelledby="checkin-title"
       >
-        <h2 className="font-bold text-ink text-lg">Gimana kabarmu hari ini?</h2>
-        <p className="text-sm text-gray-500 mb-4">
-          Cuma butuh semenit buat cek-in sama diri sendiri.
+        <h2 id="checkin-title" className="text-lg font-semibold text-ink">
+          Bagaimana kabarmu hari ini?
+        </h2>
+        <p className="mt-1 mb-4 text-sm leading-relaxed text-gray-500">
+          Luangkan sebentar untuk mengenali yang kamu rasakan.
         </p>
         <button
+          type="button"
           onClick={() => navigate("checkin")}
-          className="w-full bg-accent text-white rounded-xl py-3 font-semibold active:scale-95 transition"
+          className="flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-accent px-4 text-[15px] font-semibold text-white transition duration-150 hover:bg-accent/90 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+          aria-label="Mulai check-in harian"
         >
-          Mulai check-in →
+          Mulai check-in <ArrowRight size={16} aria-hidden="true" />
         </button>
-      </div>
+      </section>
 
-      {/* ==================== */}
-      {/* NUDGE PREVENTIF      */}
-      {/* ==================== */}
       {nudge && (
-        <div
-          className={`bg-lav/25 border border-lav rounded-2xl p-4 mb-4 transition-all duration-700 delay-400 ${
-            mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
+        <section
+          className={`mb-4 rounded-2xl bg-lav/15 p-4 transition-all duration-500 ease-out ${
+            mounted ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"
           }`}
+          style={{ transitionDelay: "500ms" }}
+          aria-label="Saran untuk saat ini"
         >
           <div className="flex items-start gap-3">
-            <div className="text-2xl">🌙</div>
-            <div className="flex-1">
-              <p className="text-xs font-bold text-purple-700 tracking-wide mb-1">
-                BUAT KAMU {nudge.level === "kuat" ? "SEKARANG" : "SAAT INI"}
+            <Lightbulb className="mt-0.5 shrink-0 text-brand" size={18} aria-hidden="true" />
+            <div className="min-w-0 flex-1">
+              <p className="text-xs font-semibold text-ink">
+                Satu hal untuk diperhatikan
               </p>
-              <p className="text-sm text-ink leading-relaxed mb-3">{nudge.teks}</p>
-              <div className="flex gap-2">
+              <p className="mt-1 text-sm leading-relaxed text-gray-500">{nudge.teks}</p>
+              <div className="mt-3 flex flex-wrap gap-2">
                 <button
+                  type="button"
                   onClick={() => navigate("quest")}
-                  className="text-xs bg-white rounded-full px-3 py-1.5 font-bold text-purple-700"
+                  className="inline-flex min-h-11 items-center gap-1 rounded-xl bg-white px-3 text-sm font-semibold text-brand transition-colors hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
                 >
-                  Lihat Quest →
+                  Lihat aktivitas <ArrowRight size={14} aria-hidden="true" />
                 </button>
                 <button
+                  type="button"
                   onClick={() => navigate("urgesurfing")}
-                  className="text-xs bg-purple-700 text-white rounded-full px-3 py-1.5 font-bold"
+                  className="inline-flex min-h-11 items-center rounded-xl px-3 text-sm font-semibold text-ink transition-colors hover:bg-white/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
                 >
-                  Coba napas dulu
+                  Coba urge surfing
                 </button>
               </div>
             </div>
           </div>
-        </div>
+        </section>
       )}
     </div>
   );

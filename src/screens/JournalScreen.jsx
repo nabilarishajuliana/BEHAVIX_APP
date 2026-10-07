@@ -5,13 +5,13 @@ export default function JournalScreen({ navigate }) {
 
   return (
     <div className="min-h-screen bg-canvas font-sans p-5 pb-24">
-      <h1 className="text-2xl font-extrabold text-ink mb-1">Jurnal 📓</h1>
+      <h1 className="text-2xl font-extrabold text-ink mb-1">Jurnal</h1>
       <p className="text-sm text-gray-500 mb-4">
         Ruang aman buat nuangin apa pun yang kamu rasa.
       </p>
 
       <div className="bg-brand/10 rounded-xl p-3 mb-4 text-xs text-brand font-medium">
-        🔒 Cuma kamu yang baca ini — nggak dikirim ke AI.
+        Catatan ini hanya bisa dibaca olehmu dan tidak dikirim ke AI.
       </div>
 
       <button
@@ -23,7 +23,7 @@ export default function JournalScreen({ navigate }) {
 
       {entries.length === 0 ? (
         <p className="text-center text-sm text-gray-400 mt-10">
-          Belum ada catatan. Yuk tulis yang pertama 🌱
+          Belum ada catatan. Kamu bisa mulai menulis kapan saja.
         </p>
       ) : (
         <div className="flex flex-col gap-3">

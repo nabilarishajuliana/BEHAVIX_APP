@@ -31,17 +31,17 @@ function SimpleTimer({ duration, onDone }) {
     <div className="flex flex-col items-center gap-6">
       <div className="w-48 h-48 rounded-full bg-brand/10 flex items-center justify-center relative">
         <svg className="absolute inset-0 -rotate-90" viewBox="0 0 100 100">
-          <circle cx="50" cy="50" r="45" fill="none" stroke="#4FB3A6" strokeOpacity="0.15" strokeWidth="6" />
+          <circle cx="50" cy="50" r="45" fill="none" stroke="var(--color-brand)" strokeOpacity="0.15" strokeWidth="6" />
           <circle
             cx="50" cy="50" r="45" fill="none"
-            stroke="#4FB3A6" strokeWidth="6"
+            stroke="var(--color-brand)" strokeWidth="6"
             strokeDasharray={`${percent * 2.83} 283`}
             strokeLinecap="round"
           />
         </svg>
         <div className="text-4xl font-extrabold text-brand relative">{mm}:{ss}</div>
       </div>
-      <p className="text-sm text-gray-500">Santai aja, kamu lagi ngasih waktu buat diri sendiri 🌱</p>
+      <p className="text-sm text-gray-500">Santai aja, kamu lagi ngasih waktu buat diri sendiri.</p>
     </div>
   );
 }
@@ -87,7 +87,7 @@ export default function ActivityScreen({ params, navigate, goBack }) {
         >‹</button>
 
         <h1 className="text-white text-xl font-bold text-center mt-6 mb-1">
-          {saran.label} 🌊
+          {saran.label}
         </h1>
         <p className="text-white/60 text-sm text-center mb-10">
           Nggak usah mikir apa-apa. Cukup ikutin lingkarannya.
@@ -105,7 +105,7 @@ export default function ActivityScreen({ params, navigate, goBack }) {
           onClick={finish}
           className="w-full rounded-xl py-3.5 font-semibold text-white bg-accent"
         >
-          {done ? "Selesai 🌱" : "Selesai lebih awal"}
+          {done ? "Selesai" : "Selesai lebih awal"}
         </button>
       </div>
     );
@@ -147,7 +147,7 @@ export default function ActivityScreen({ params, navigate, goBack }) {
           onClick={finish}
           className="w-full rounded-xl py-3.5 font-semibold text-white bg-accent mt-6"
         >
-          {done ? "Selesai 🌱" : "Selesai lebih awal"}
+          {done ? "Selesai" : "Selesai lebih awal"}
         </button>
       </div>
     );
@@ -196,7 +196,7 @@ export default function ActivityScreen({ params, navigate, goBack }) {
       </div>
 
       <p className="text-xs text-gray-400 text-center mb-4">
-        🌱 Nggak buru-buru. Kapan pun siap, tap tombol di bawah.
+        Nggak buru-buru. Kapan pun siap, pilih tombol di bawah.
       </p>
 
       <div className="flex-1" />

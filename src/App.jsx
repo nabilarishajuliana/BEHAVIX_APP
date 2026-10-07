@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { storage, KEYS } from "./utils/storage";
 
 // tab utama
@@ -18,6 +18,7 @@ import JournalDetailScreen from "./screens/JournalDetailScreen";
 import HistoryScreen from "./screens/HistoryScreen";
 
 // onboarding + login
+import SplashScreen from "./screens/SplashScreen";
 import LoginScreen from "./screens/LoginScreen";
 import OnboardingWelcome from "./screens/OnboardingWelcome";
 import OnboardingUsername from "./screens/OnboardingUsername";
@@ -36,7 +37,31 @@ import SosButton from "./components/SosButton";
 const TABS = ["beranda", "progres", "quest", "jurnal", "profil"];
 
 export default function App() {
-  // entry point ditentukan sekali di awal
+  const [theme, setTheme] = useState(() => {
+    const savedTheme = storage.get(KEYS.theme, "light") === "dark" ? "dark" : "light";
+    document.documentElement.dataset.theme = savedTheme;
+    return savedTheme;
+  });
+
+  function changeTheme(nextTheme) {
+    const selectedTheme = nextTheme === "dark" ? "dark" : "light";
+    storage.set(KEYS.theme, selectedTheme);
+    setTheme(selectedTheme);
+  }
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+    storage.set(KEYS.theme, theme);
+    const canvasColor = getComputedStyle(document.documentElement)
+      .getPropertyValue("--color-canvas")
+      .trim();
+    document.querySelector('meta[name="theme-color"]')?.setAttribute("content", canvasColor);
+  }, [theme]);
+
+  // Splash state — di top level, sendiri
+  const [showSplash, setShowSplash] = useState(true);
+
+  // Entry point ditentukan sekali di awal
   const [history, setHistory] = useState(() => {
     const user = storage.get(KEYS.user);
     if (user && user.onboarded) return [{ screen: "login", params: {} }];
@@ -60,7 +85,7 @@ export default function App() {
     progres: <ProgresScreen {...props} />,
     quest: <QuestScreen {...props} />,
     jurnal: <JournalScreen {...props} />,
-    profil: <ProfilScreen {...props} />,
+    profil: <ProfilScreen {...props} theme={theme} setTheme={changeTheme} />,
 
     checkin: <CheckinScreen {...props} />,
     insight: <InsightScreen {...props} />,
@@ -79,8 +104,12 @@ export default function App() {
 
   const isTab = TABS.includes(current.screen);
 
+  if (showSplash) {
+    return <SplashScreen onDone={() => setShowSplash(false)} />;
+  }
+
   return (
-    <div className="mx-auto max-w-md min-h-screen bg-canvas relative">
+    <div className="mx-auto max-w-[420px] min-h-screen bg-canvas relative">
       {screens[current.screen] || <div className="p-6">404: {current.screen}</div>}
       {isTab && <SosButton navigate={navigate} />}
       {isTab && <BottomNav current={current.screen} goTab={goTab} />}

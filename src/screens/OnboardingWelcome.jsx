@@ -16,14 +16,14 @@ export default function OnboardingWelcome({ navigate }) {
       </div>
 
       <div className="flex-1 flex flex-col items-center justify-center text-center px-2">
-        <div className="w-32 h-32 rounded-full bg-brand/20 flex items-center justify-center mb-8 text-6xl">
-          🌊
+        <div className="w-32 h-32 flex items-center justify-center mb-8">
+          <img src="/logo-behavix.png" alt="Logo Behavix" className="w-full h-full object-contain" />
         </div>
         <h1 className="text-3xl font-extrabold text-ink mb-3">
-          Halo, seneng<br />kamu di sini 💜
+          Halo, seneng<br />kamu di sini!
         </h1>
         <p className="text-sm text-gray-500 leading-relaxed">
-          Aku Behavix — aku bakal nemenin kamu pelan-pelan,<br />
+          Aku Behavix! aku bakal nemenin kamu pelan-pelan,<br />
           tanpa menghakimi. Nggak ada yang perlu buru-buru.
         </p>
       </div>

@@ -34,19 +34,19 @@ export default function JournalDetailScreen({ params, goBack }) {
           onClick={hapus}
           className="text-sm text-red-500 font-semibold"
         >
-          🗑️ Hapus
+          Hapus
         </button>
       </div>
 
       {/* tanggal */}
       <p className="text-xs text-brand font-bold tracking-wide mb-1">
-        📅 {tanggal.toUpperCase()}
+        {tanggal.toUpperCase()}
       </p>
 
       {/* prompt kalau ada */}
       {entry.prompt && (
         <div className="bg-brand/10 rounded-2xl p-3 mb-4">
-          <p className="text-xs font-bold text-brand mb-1">💭 PERTANYAAN PEMANTIK</p>
+          <p className="text-xs font-bold text-brand mb-1">PERTANYAAN PEMANTIK</p>
           <p className="text-sm text-ink italic">{entry.prompt}</p>
         </div>
       )}
@@ -60,7 +60,7 @@ export default function JournalDetailScreen({ params, goBack }) {
 
       {/* banner privasi */}
       <div className="bg-brand/10 rounded-xl p-3 text-xs text-brand font-medium text-center">
-        🔒 Cuma kamu yang baca ini
+        Catatan ini hanya bisa dibaca olehmu.
       </div>
     </div>
   );

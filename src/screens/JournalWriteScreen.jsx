@@ -66,7 +66,7 @@ export default function JournalWriteScreen({ params, navigate, goBack }) {
       {/* Info kecil kalau dari quest */}
       {fromQuest && (
         <div className="bg-brand/10 rounded-xl p-3 mb-3 text-xs text-brand text-center">
-          🌱 Kamu lagi ngerjain aktivitas <b>Tulis perasaan</b> dari Quest
+          Kamu sedang menjalankan aktivitas <b>Tulis perasaan</b> dari Quest.
         </div>
       )}
 
@@ -74,7 +74,7 @@ export default function JournalWriteScreen({ params, navigate, goBack }) {
       {pakaiPrompt ? (
         <div className="bg-brand/10 rounded-2xl p-4 mb-4">
           <div className="flex items-start justify-between gap-3 mb-2">
-            <p className="text-xs font-bold text-brand tracking-wide">💭 PERTANYAAN PEMANTIK</p>
+            <p className="text-xs font-bold text-brand tracking-wide">PERTANYAAN PEMANTIK</p>
             <button
               onClick={() => setPakaiPrompt(false)}
               className="text-xs text-gray-400"
@@ -89,7 +89,7 @@ export default function JournalWriteScreen({ params, navigate, goBack }) {
             onClick={gantiPrompt}
             className="text-xs bg-white rounded-full px-3 py-1.5 font-bold text-brand"
           >
-            🔄 Ganti pertanyaan
+            Ganti pertanyaan
           </button>
         </div>
       ) : (
@@ -97,7 +97,7 @@ export default function JournalWriteScreen({ params, navigate, goBack }) {
           onClick={() => setPakaiPrompt(true)}
           className="text-xs text-gray-400 mb-3 self-start"
         >
-          💭 Butuh pertanyaan pemantik?
+          Tampilkan pertanyaan pemantik
         </button>
       )}
 
@@ -110,7 +110,7 @@ export default function JournalWriteScreen({ params, navigate, goBack }) {
       />
 
       <p className="text-xs text-gray-400 text-center mt-4">
-        🔒 Cuma kamu yang baca ini
+        Catatan ini hanya bisa dibaca olehmu.
       </p>
     </div>
   );

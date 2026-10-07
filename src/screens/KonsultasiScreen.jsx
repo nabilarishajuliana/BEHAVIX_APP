@@ -14,7 +14,7 @@ export default function KonsultasiScreen({ goBack, navigate }) {
 
       <div className="bg-brand/10 rounded-2xl p-4 mb-5">
         <p className="text-sm text-brand leading-relaxed">
-          Kadang ngobrol sama profesional bisa ngebantu banget. Nggak harus, tapi selalu ada opsi. 💚
+          Berbicara dengan profesional dapat membantu. Kamu selalu punya pilihan untuk mencari dukungan.
         </p>
       </div>
 

@@ -7,8 +7,8 @@ const KATEGORI = ["Semua", "Tenang", "Gerak", "Kreatif", "Sosial"];
 const WARNA = {
   Tenang: "bg-brand/15 text-brand",
   Gerak: "bg-accent/15 text-accent",
-  Kreatif: "bg-lav/25 text-purple-700",
-  Sosial: "bg-sunny/30 text-yellow-700",
+  Kreatif: "bg-lav/25 text-brand",
+  Sosial: "bg-sunny/30 text-accent",
 };
 
 export default function QuestScreen({ navigate }) {
@@ -23,12 +23,12 @@ export default function QuestScreen({ navigate }) {
   return (
     <div className="min-h-screen bg-canvas font-sans p-5 pb-24">
       <div className="flex items-start justify-between mb-1">
-        <h1 className="text-2xl font-extrabold text-ink">Quest ✨</h1>
+        <h1 className="text-2xl font-extrabold text-ink">Aktivitas</h1>
         <button
           onClick={() => navigate("history")}
           className="text-xs bg-white rounded-full px-3 py-1.5 font-bold text-brand shadow-sm"
         >
-          📊 Riwayat
+          Riwayat
         </button>
       </div>
       <p className="text-sm text-gray-500 mb-4">
